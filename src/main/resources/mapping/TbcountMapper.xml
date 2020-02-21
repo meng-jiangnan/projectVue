@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.TbcountMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Tbcount" >
+    <id column="countId" property="countid" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="REAL" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="INTEGER" />
+    <result column="departmentId" property="departmentid" jdbcType="INTEGER" />
+    <result column="employeeId" property="employeeid" jdbcType="INTEGER" />
+    <result column="departmentName" property="departmentname" jdbcType="VARCHAR" />
+    <result column="employeeName" property="employeename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    countId, money, year, month, departmentId, employeeId, departmentName, employeeName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbcount
+    where countId = #{countid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbcount
+    where countId = #{countid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Tbcount" >
+    insert into tbcount (countId, money, year, 
+      month, departmentId, employeeId, 
+      departmentName, employeeName)
+    values (#{countid,jdbcType=INTEGER}, #{money,jdbcType=REAL}, #{year,jdbcType=INTEGER}, 
+      #{month,jdbcType=INTEGER}, #{departmentid,jdbcType=INTEGER}, #{employeeid,jdbcType=INTEGER}, 
+      #{departmentname,jdbcType=VARCHAR}, #{employeename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Tbcount" >
+    insert into tbcount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="countid != null" >
+        countId,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="departmentid != null" >
+        departmentId,
+      </if>
+      <if test="employeeid != null" >
+        employeeId,
+      </if>
+      <if test="departmentname != null" >
+        departmentName,
+      </if>
+      <if test="employeename != null" >
+        employeeName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="countid != null" >
+        #{countid,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=REAL},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="employeeid != null" >
+        #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentname != null" >
+        #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="employeename != null" >
+        #{employeename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Tbcount" >
+    update tbcount
+    <set >
+      <if test="money != null" >
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        departmentId = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="employeeid != null" >
+        employeeId = #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentname != null" >
+        departmentName = #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="employeename != null" >
+        employeeName = #{employeename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where countId = #{countid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Tbcount" >
+    update tbcount
+    set money = #{money,jdbcType=REAL},
+      year = #{year,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      departmentId = #{departmentid,jdbcType=INTEGER},
+      employeeId = #{employeeid,jdbcType=INTEGER},
+      departmentName = #{departmentname,jdbcType=VARCHAR},
+      employeeName = #{employeename,jdbcType=VARCHAR}
+    where countId = #{countid,jdbcType=INTEGER}
+  </update>
+</mapper>
